@@ -1,15 +1,18 @@
 const countries = {
-    france: { name: 'France', top: '400px', left: '250px', width: '50px', height: '30px' },
-    germany: { name: 'Germany', top: '250px', left: '350px', width: '50px', height: '30px' },
-    netherlands: { name: 'Netherlands', top: '200px', left: '300px', width: '30px', height: '20px' },
-    belgium: { name: 'Belgium', top: '220px', left: '280px', width: '30px', height: '20px' },
-    austria: { name: 'Austria', top: '300px', left: '350px', width: '40px', height: '25px' },
-    czech: { name: 'Czech Republic', top: '270px', left: '340px', width: '30px', height: '20px' },
-    switzerland: { name: 'Switzerland', top: '320px', left: '300px', width: '30px', height: '20px' },
-    slovakia: { name: 'Slovakia', top: '270px', left: '370px', width: '30px', height: '20px' },
-    hungary: { name: 'Hungary', top: '290px', left: '370px', width: '30px', height: '20px' },
-    ukraine: { name: 'Ukraine', top: '240px', left: '420px', width: '60px', height: '35px' },
-    turkey: { name: 'Turkey', top: '350px', left: '500px', width: '50px', height: '30px' }
+    france: { name: 'France', top: '396px', left: '250px', width: '61px', height: '46px' },
+    germany: { name: 'Germany', top: '340px', left: '334px', width: '43px', height: '30px' },
+    spain: { name: 'Spain', top: '492px', left: '160px', width: '63px', height: '43px' },
+    netherlands: { name: 'Netherlands', top: '317px', left: '300px', width: '32px', height: '15px' },
+    belgium: { name: 'Belgium', top: '340px', left: '291px', width: '30px', height: '20px' },
+    austria: { name: 'Austria', top: '382px', left: '393px', width: '35px', height: '35px' },
+    unitedKingdom: { name: 'United Kingdom', top: '288px', left: '225px', width: '50px', height: '50px' },
+    czech: { name: 'Czech Republic', top: '352px', left: '403px', width: '30px', height: '20px' },
+    switzerland: { name: 'Switzerland', top: '405px', left: '327px', width: '30px', height: '20px' },
+    slovakia: { name: 'Slovakia', top: '364px', left: '450px', width: '30px', height: '20px' },
+    hungary: { name: 'Hungary', top: '394px', left: '441px', width: '41px', height: '20px' },
+    ukraine: { name: 'Ukraine', top: '311px', left: '552px', width: '70px', height: '51px' },
+    turkey: { name: 'Turkey', top: '475px', left: '610px', width: '64px', height: '48px' },
+    russia: { name: 'Russia', top: '151px', left: '566px', width: '116px', height: '78px' },
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
