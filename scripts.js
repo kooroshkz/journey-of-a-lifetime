@@ -7,12 +7,13 @@ const countries = {
     austria: { name: 'Austria', top: '382px', left: '393px', width: '35px', height: '35px' },
     unitedKingdom: { name: 'United Kingdom', top: '288px', left: '225px', width: '50px', height: '50px' },
     czech: { name: 'Czech Republic', top: '352px', left: '403px', width: '30px', height: '20px' },
-    switzerland: { name: 'Switzerland', top: '405px', left: '327px', width: '30px', height: '20px' },
+    switzerland: { name: 'Switzerland', top: '400px', left: '327px', width: '30px', height: '20px' },
     slovakia: { name: 'Slovakia', top: '364px', left: '450px', width: '30px', height: '20px' },
     hungary: { name: 'Hungary', top: '394px', left: '441px', width: '41px', height: '20px' },
     ukraine: { name: 'Ukraine', top: '311px', left: '552px', width: '70px', height: '51px' },
     turkey: { name: 'Turkey', top: '475px', left: '610px', width: '64px', height: '48px' },
     russia: { name: 'Russia', top: '151px', left: '566px', width: '116px', height: '78px' },
+    albania: { name: 'Albania', top: '486px', left: '470px', width: '30px', height: '20px' },
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
