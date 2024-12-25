@@ -2,6 +2,9 @@
 
 Journey of a Lifetime: Explore the World is a web-based project showcasing the countries I've visited or plan to visit. In this journey, I will explore Europe in my twenties and aim to travel across the globe by the time I turn thirty.
 
+### Click to try out
+[Journey of a Lifetime - Explore Europe](http://kooroshkz.github.io/journey-of-a-lifetime)
+
 ### Countries in Europe
 
 - [x] Albania
@@ -45,7 +48,3 @@ Journey of a Lifetime: Explore the World is a web-based project showcasing the c
 - [x] Turkey
 - [x] Ukraine
 - [x] United Kingdom
-
----
-
-vYou can explore the project here: [Journey of a Lifetime - Explore Europe](http://kooroshkz.github.com/journey-of-a-lifetime)
