@@ -31,6 +31,7 @@ Journey of a Lifetime: Explore the World is a web-based project showcasing the c
 - [ ] Latvia
 - [ ] Liechtenstein
 - [ ] Lithuania
+- [ ] Norway
 - [x] Luxembourg
 - [x] Netherlands
 - [ ] Malta
@@ -43,7 +44,9 @@ Journey of a Lifetime: Explore the World is a web-based project showcasing the c
 - [x] Russia
 - [ ] Serbia
 - [x] Slovakia
+- [ ] Slovenia
 - [x] Spain
+- [ ] Sweden
 - [x] Switzerland
 - [x] Turkey
 - [x] Ukraine
