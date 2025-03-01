@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Screen Europe Map</title>
+
+    <!-- jVectorMap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jvectormap-next/3.0.0/jquery-jvectormap.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            overflow: hidden; /* Prevents scrolling */
+        }
+        #map-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #europe-map {
+            width: 100%;
+            height: 100%;
+        }
+        .jvectormap-container {
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="map-container">
+        <div id="europe-map"></div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    <!-- jVectorMap JavaScript -->
+    <script src="node_modules/jvectormap-next/jquery-jvectormap.min.js"></script>
+
+    <!-- Europe Map File -->
+    <script src="node_modules/jvectormap-content/europe-mill.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#europe-map').vectorMap({
+                map: 'europe_mill',
+                backgroundColor: "#f4f4f4",
+                zoomOnScroll: true,
+                zoomMax: 5,
+                zoomMin: 1,
+                regionStyle: {
+                    initial: { 
+                        fill: "#4a90e2",
+                        stroke: "#0000FF",  // Blue border
+                        "stroke-width": 0.3, // Thin border
+                        "stroke-opacity": 0.4
+                    }
+                },
+                series: {
+                    regions: [{
+                        values: {
+                            "ES": "#FFCC00",  // Spain (Yellow from flag)
+                            "NL": "#FFCC00",  // Netherlands (Orange)
+                            "FR": "#FFCC00",  // France (Blue from flag)
+                            "DE": "#FFCC00",  // Germany (Black from flag)
+                            "IT": "#FFCC00",  // Italy (Green from flag)
+                            "GB": "#FFCC00",  // United Kingdom (Dark Blue from flag)
+                            "BE": "#FFCC00",  // Belgium (Yellow from flag)
+                            "TR": "#FFCC00",  // Turkey (Red from flag)
+                            "AT": "#FFCC00",  // Austria (Red from flag)
+                            "AL": "#FFCC00",  // Albania (Red from flag)
+                            "CZ": "#FFCC00",  // Czech Republic (Blue from flag)
+                            "HU": "#FFCC00",  // Hungary (Green from flag)
+                            "RU": "#FFCC00",  // Russia (Red from flag)
+                            "UA": "#FFCC00",  // Ukraine (Yellow from flag)
+                            "LU": "#FFCC00",  // Luxembourg (Light Blue from flag)
+                            "SK": "#FFCC00",  // Slovakia (Red from flag)
+                            "CH": "#FFCC00"   // Switzerland (Red from flag)
+                        },
+                        attribute: 'fill'
+                    }]
+                },
+                onRegionTipShow: function(e, el, code) {
+                    el.html(el.html() + ' (Country Code: ' + code + ')');
+                }
+            });
+    
+            // Force the SVG to take up the full screen
+            setTimeout(function() {
+                $('.jvectormap-container').css({
+                    width: '100%',
+                    height: '100%'
+                });
+            }, 100);
+        });
+    </script>
+    
+    
+
+</body>
+</html>
