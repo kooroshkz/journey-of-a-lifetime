@@ -40,7 +40,7 @@ Journey of a Lifetime: Explore the World is a web-based project showcasing the c
 - [ ] Montenegro
 - [ ] North Macedonia
 - [x] Poland
-- [ ] Portugal
+- [x] Portugal
 - [x] Russia
 - [ ] Serbia
 - [x] Slovakia

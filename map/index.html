@@ -1,114 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full-Screen Europe Map</title>
-
-    <!-- jVectorMap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jvectormap-next/3.0.0/jquery-jvectormap.css">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html, body {
-            width: 100%;
-            height: 100%;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            overflow: hidden; /* Prevents scrolling */
-        }
-        #map-container {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #europe-map {
-            width: 100%;
-            height: 100%;
-        }
-        .jvectormap-container {
-            width: 100% !important;
-            height: 100% !important;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Visited Countries Flag Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { margin: 0; }
+    svg { width: 100vw; height: 100vh; display: block; }
+  </style>
 </head>
 <body>
+  <svg></svg>
 
-    <div id="map-container">
-        <div id="europe-map"></div>
-    </div>
+  <!-- D3.js and TopoJSON for map rendering -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
 
-    <!-- jQuery -->
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script>
+    // List of countries you've visited
+    const visited = [
+      'Albania','Austria','Belgium','Czech Republic','France','Germany','Hungary','Italy',
+      'Iran','Luxembourg','Malaysia','Netherlands','Portugal','Russia','Slovakia','Spain',
+      'Switzerland','Thailand','Turkey','United Arab Emirates','United Kingdom','Ukraine'
+    ];
 
-    <!-- jVectorMap JavaScript -->
-    <script src="node_modules/jvectormap-next/jquery-jvectormap.min.js"></script>
+    // Map country names to their 2-letter flag code
+    const flagMap = {
+      'Albania':'al','Austria':'at','Belgium':'be','Czech Republic':'cz','France':'fr','Germany':'de',
+      'Hungary':'hu','Italy':'it','Iran':'ir','Luxembourg':'lu','Malaysia':'my','Netherlands':'nl',
+      'Portugal':'pt','Russia':'ru','Slovakia':'sk','Spain':'es','Switzerland':'ch','Thailand':'th',
+      'Turkey':'tr','United Arab Emirates':'ae','United Kingdom':'gb','Ukraine':'ua'
+    };
 
-    <!-- Europe Map File -->
-    <script src="node_modules/jvectormap-content/europe-mill.js"></script>
+    const width = window.innerWidth;
+    const height = window.innerHeight;
 
-    <script>
-        $(document).ready(function() {
-            $('#europe-map').vectorMap({
-                map: 'europe_mill',
-                backgroundColor: "#f4f4f4",
-                zoomOnScroll: true,
-                zoomMax: 5,
-                zoomMin: 1,
-                regionStyle: {
-                    initial: { 
-                        fill: "#4a90e2",
-                        stroke: "#0000FF",  // Blue border
-                        "stroke-width": 0.3, // Thin border
-                        "stroke-opacity": 0.4
-                    }
-                },
-                series: {
-                    regions: [{
-                        values: {
-                            "ES": "#FFCC00",  // Spain (Yellow from flag)
-                            "NL": "#FFCC00",  // Netherlands (Orange)
-                            "FR": "#FFCC00",  // France (Blue from flag)
-                            "DE": "#FFCC00",  // Germany (Black from flag)
-                            "IT": "#FFCC00",  // Italy (Green from flag)
-                            "GB": "#FFCC00",  // United Kingdom (Dark Blue from flag)
-                            "BE": "#FFCC00",  // Belgium (Yellow from flag)
-                            "TR": "#FFCC00",  // Turkey (Red from flag)
-                            "AT": "#FFCC00",  // Austria (Red from flag)
-                            "AL": "#FFCC00",  // Albania (Red from flag)
-                            "CZ": "#FFCC00",  // Czech Republic (Blue from flag)
-                            "HU": "#FFCC00",  // Hungary (Green from flag)
-                            "RU": "#FFCC00",  // Russia (Red from flag)
-                            "UA": "#FFCC00",  // Ukraine (Yellow from flag)
-                            "LU": "#FFCC00",  // Luxembourg (Light Blue from flag)
-                            "SK": "#FFCC00",  // Slovakia (Red from flag)
-                            "CH": "#FFCC00"   // Switzerland (Red from flag)
-                        },
-                        attribute: 'fill'
-                    }]
-                },
-                onRegionTipShow: function(e, el, code) {
-                    el.html(el.html() + ' (Country Code: ' + code + ')');
-                }
-            });
-    
-            // Force the SVG to take up the full screen
-            setTimeout(function() {
-                $('.jvectormap-container').css({
-                    width: '100%',
-                    height: '100%'
-                });
-            }, 100);
-        });
-    </script>
-    
-    
+    const svg = d3.select('svg');
+    const g = svg.append('g');
 
+    // Map projection and path
+    const projection = d3.geoMercator()
+      .scale(width / 2 / Math.PI)
+      .translate([width / 2, height / 1.5]);
+    const path = d3.geoPath(projection);
+
+    // Enable zooming and panning
+    svg.call(d3.zoom()
+      .scaleExtent([1, 8])
+      .on('zoom', (event) => { g.attr('transform', event.transform); })
+    );
+
+    // Define SVG patterns for each visited country's flag
+    const defs = svg.append('defs');
+    visited.forEach(country => {
+      const code = flagMap[country];
+      defs.append('pattern')
+        .attr('id', 'flag-' + code)
+        .attr('patternUnits', 'objectBoundingBox')
+        .attr('patternContentUnits', 'objectBoundingBox')
+        .attr('width', 1)
+        .attr('height', 1)
+        .append('image')
+        .attr('href', 'https://flagcdn.com/' + code + '.svg')
+        .attr('width', 1)
+        .attr('height', 1)
+        .attr('preserveAspectRatio', 'none');
+    });
+
+    // Load and render world map
+    fetch('https://unpkg.com/world-atlas@2/countries-110m.json')
+      .then(response => response.json())
+      .then(world => {
+        const countries = topojson.feature(world, world.objects.countries).features;
+        g.selectAll('path')
+          .data(countries)
+          .enter().append('path')
+          .attr('d', path)
+          .attr('fill', d => {
+            const name = d.properties.name;
+            if (visited.includes(name)) {
+              const code = flagMap[name];
+              return 'url(#flag-' + code + ')';
+            }
+            return '#e0e0e0';
+          })
+          .attr('stroke', '#999');
+      });
+  </script>
 </body>
 </html>
